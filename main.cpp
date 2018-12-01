@@ -135,11 +135,6 @@ void introduceAttack()
 }
 bool battle(player &user, monster enemy, bool battling, float volume) //Loop for an encounter
 {
-    /*  sf::Music goldDust;         //Load up "battle music"
-        if(!goldDust.openFromFile("Music/GoldDust.ogg"));   //Load up "battle music" file
-        goldDust.setVolume(volume);
-        goldDust.play();    //Play the battle music
-    */
     void introduceAttack();
     string input = "k"; //Input string - Not char so they cannot type in multiple letters for ease
     drawGapAndLine();
@@ -147,7 +142,7 @@ bool battle(player &user, monster enemy, bool battling, float volume) //Loop for
     {
         user.handleStats();
         user.printStats();      //Shows current user statistics
-        cout << "-~-" << endl;  //Pretty line :3
+        cout << "-~-" << endl;  //Pretty line
         enemy.printStats();     //Enemy statistic
         enemy.draw();           //Draw the enemy from file
         input = user.battleInput(); //Player does input
@@ -242,25 +237,25 @@ int main() //Main function
     srand(time(NULL));  //Prepares the game for anything that needs random numbers
     mapLoader mapLoad;  //Prepares object for loading map
     string name;        //Prepares string for the players name.
-    cout << "Welcome to Hopson Land!!!" << endl;    //OMG welcome"
+    cout << "Welcome to Hopson Land!!!" << endl; // Welcome!
     makeGap(2);
-    string option = "Z";
+    string option;
     do
     {
         cout    << "(N)ew game, or "
                 << "(L)oad game?" << endl;
 
         cin >> option;
-        if(option == "N" || option == "n" || option == "L" || option == "l") break;
-    }while(option != "N" || option != "n" || option != "L" || option != "l");
+        if(tolower(option) == "n"|| tolower(option) == "l") break;
+    }while(tolower(option) != "n" || tolower(option) != "l");
 
-    if(option == "N")
+    if(tolower(option) == "n")
     {
         name = askForName();        //Allows user to input their name
         player user(name, 5, 5);    //Player constructor
         mainGameLoop(mapLoad, user);    //Calls the main loop!
     }
-    else if(option == "L")
+    else if(tolower(option) == "l")
     {
         cout    << "Right, what was your EXACT name when playing last?" << endl;
         string name;
